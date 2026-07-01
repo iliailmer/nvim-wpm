@@ -12,7 +12,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  "yourname/nvim-wpm",
+  "iliailmer/nvim-wpm",
   opts = {},
 }
 ```
@@ -26,7 +26,8 @@ require("nvim-wpm").setup({
 })
 ```
 
-Then call `require("nvim-wpm").wpm()` from any statusline. For [lualine](https://github.com/nvim-lualine/lualine.nvim):
+Then call `require("nvim-wpm").wpm()` from any statusline. For
+[lualine](https://github.com/nvim-lualine/lualine.nvim):
 
 ```lua
 require("lualine").setup({
@@ -38,11 +39,11 @@ require("lualine").setup({
 
 ## How it works
 
-Every `InsertCharPre` keystroke is timestamped. `wpm()` counts keystrokes in
-the trailing `window_ms` window, divides by 5 (the standard "1 word = 5
-characters" convention), and scales to a per-minute rate. As keystrokes age
-out of the window, the displayed rate decays toward 0 within `window_ms` of
-you stopping typing.
+Every `InsertCharPre` keystroke is timestamped. `wpm()` counts keystrokes in the
+trailing `window_ms` window, divides by 5 (the standard "1 word = 5 characters"
+convention), and scales to a per-minute rate. As keystrokes age out of the
+window, the displayed rate decays toward 0 within `window_ms` of you stopping
+typing.
 
 ## Testing
 
