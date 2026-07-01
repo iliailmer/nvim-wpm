@@ -21,13 +21,23 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 require("nvim-wpm").setup({
-  window_ms = 10000,  -- rolling window size, in milliseconds (default 10000)
-  format = "%d wpm",  -- string.format template, or a function(n: number): string
+  window_ms = 10000,              -- rolling window size, in milliseconds (default 10000)
+  format = "%d wpm",              -- string.format template, or a function(n: number): string
+  lualine_section = "lualine_x",  -- which lualine section to auto-inject into (default lualine_x)
 })
 ```
 
-Then call `require("nvim-wpm").wpm()` from any statusline. For
-[lualine](https://github.com/nvim-lualine/lualine.nvim):
+### lualine
+
+If [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) is installed,
+nvim-wpm automatically adds itself to `sections.lualine_x` (configurable via
+`lualine_section`) — no edits to your lualine config needed, regardless of
+whether lualine or nvim-wpm's `setup()` runs first.
+
+If lualine is loaded lazily by your plugin manager on a trigger that fires
+*after* Neovim's `VimEnter` (e.g. a keybinding or command), auto-integration
+won't detect it in time. In that case, or for any other statusline, wire `wpm()`
+in manually:
 
 ```lua
 require("lualine").setup({
